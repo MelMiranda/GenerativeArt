@@ -6,6 +6,9 @@
   PImage img6;
   PImage img7;
   PImage img8;
+  int sizeX=1000;
+  int sizeY=700;
+  
      
  void setup(){
   size(1000, 700);
@@ -17,7 +20,7 @@
   img5 = loadImage("5.png");
   img6 = loadImage("6.png");
   img7 = loadImage("7.png");
-  img8 = loadImage("8.gif");
+  img8 = loadImage("3.jpg");
   
  
 
@@ -25,9 +28,9 @@
 
 void draw(){
   
- int randomForm= int(random(11,14));
- float randomX = random(0,801);
- float randomY = random(0,501);
+ int randomForm= int(random(7));
+ float randomX = random(0,sizeX+1);
+ float randomY = random(0,sizeY+1);
  
        
  dibujar(randomForm,randomX, randomY);
