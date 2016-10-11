@@ -8,7 +8,9 @@
   PImage img8;
   int sizeX=1000;
   int sizeY=700;
-  
+  int Y_AXIS = 1;
+  int X_AXIS = 2;
+  color b1, b2, c1, c2;
      
  void setup(){
   size(1000, 700);
@@ -101,5 +103,33 @@ void dibujar(int a, float x, float y){
 };
 
 void mouseClicked() {
-  background(random(256),random(256), random(256), random(256));
+   b1 = color(random(256), random(256), random(256));
+  b2 = color(random(256), random(256), random(256));
+  c1 = color(random(256), random(256), random(256));
+  c2 = color(random(256), random(256), random(256));
+   setGradient(0, 0, width/2, height, b1, b2, X_AXIS);
+    setGradient(width/2, 0, width/2, height, b2, b1, X_AXIS);
+  //background(random(256),random(256), random(256), random(256));
+};
+
+void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) {
+
+  noFill();
+
+  if (axis == Y_AXIS) {  // Top to bottom gradient
+    for (int i = y; i <= y+h; i++) {
+      float inter = map(i, y, y+h, 0, 1);
+      color c = lerpColor(c1, c2, inter);
+      stroke(c);
+      line(x, i, x+w, i);
+    }
+  }  
+  else if (axis == X_AXIS) {  // Left to right gradient
+    for (int i = x; i <= x+w; i++) {
+      float inter = map(i, x, x+w, 0, 1);
+      color c = lerpColor(c1, c2, inter);
+      stroke(c);
+      line(i, y, i, y+h);
+    }
+  }
 }
